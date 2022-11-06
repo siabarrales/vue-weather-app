@@ -108,7 +108,6 @@ onMounted(async () => {
   font-weight: bolder;
   margin-top: 80px;
   margin-bottom: 35px;
-  color: white;
 }
 .weather {
   margin-top: 20px;

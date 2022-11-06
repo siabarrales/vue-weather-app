@@ -4,7 +4,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  color-scheme: dark;
+  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -85,7 +85,7 @@ button:focus-visible {
 
 .card {
   margin-top: 30px;
-  background-color: #3b3b3b;
+
   padding: 2em 1.5em;
   width: 320px;
   min-height: 607px;
@@ -140,5 +140,33 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+  .forecast-container {
+    background-color: rgba(229, 229, 229, 0.5) !important;
+    box-shadow: 0 1px 12px rgba(133, 133, 133, 0.5) !important;
+  }
+  .date {
+    color: #213547;
+    opacity: 0.7 !important;
+  }
+  .card {
+    box-shadow: 0 1px 12px rgba(133, 133, 133, 0.5) !important;
+  }
+  input {
+    box-shadow: 0 1px 12px rgba(133, 133, 133, 0.5) !important;
+  }
+  button {
+    box-shadow: 0 1px 12px rgba(133, 133, 133, 0.5) !important;
+  }
+  .loader {
+    color: #213547;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: #3b3b3b;
+  }
+  .degrees {
+    color: white;
   }
 }
