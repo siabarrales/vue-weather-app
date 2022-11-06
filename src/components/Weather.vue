@@ -3,6 +3,7 @@ import { ref, onMounted, watch, computed } from "vue";
 import moment from "moment";
 import IconWeather from "./icons/IconWeather.vue";
 import useWeather from "./../composables/useWeather";
+import ForecastWeather from "./ForecastWeather.vue";
 
 const props = defineProps({
   city: String,
@@ -14,12 +15,13 @@ const loading = ref(true);
 const loadingWeather = async () => {
   loading.value = true;
   weather.value = await getRealTimeWeather(props.city);
+  console.log(weather.value.forecast.forecastday);
   loading.value = false;
 };
 
 watch(
   () => props.city,
-  async (data) => {
+  async () => {
     loadingWeather();
   }
 );
@@ -39,10 +41,10 @@ onMounted(async () => {
     <div v-else>
       <p class="city">{{ weather.location.name }}</p>
       <p class="date">
-        {{ moment(weather.location.localtime).format("LL") }}.
-        {{ weather.location.country }}
+        {{ weather.location.country }},
+        {{ moment(weather.location.localtime).format("LL") }}
       </p>
-      <p class="degrees">{{ weather.current.temp_c }}°c</p>
+      <p class="degrees">{{ Math.round(weather.current.temp_c) }}°c</p>
       <span>--------------</span>
       <div class="weather">
         <img
@@ -54,22 +56,23 @@ onMounted(async () => {
         </h3>
       </div>
     </div>
+    <ForecastWeather
+      v-if="weather && !loading"
+      :forecastday="weather.forecast.forecastday"
+    />
   </div>
 </template>
 
 <style scoped>
-.card {
-  margin-top: 50px;
-  height: 500px;
-  border-radius: 8px;
-}
 .city {
   font-size: 35px;
   font-weight: 800;
   margin-top: 0px;
   margin-bottom: 0px;
   letter-spacing: 1px;
+  line-height: 100%;
 }
+
 .date {
   margin-top: 15px;
   font-size: 15px;
@@ -88,11 +91,5 @@ onMounted(async () => {
 .weather-description {
   margin-top: 0px;
   letter-spacing: 1px;
-}
-.card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 0px;
 }
 </style>

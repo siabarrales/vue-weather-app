@@ -11,20 +11,22 @@ const searchWeather = () => {
 <template>
   <div class="container">
     <div class="search-header">
-      <h1>Weather App</h1>
+      <p class="title">Weather App</p>
       <IconWeather class="search-weather-icon" />
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Enter a city" v-model="city" />
+      <input
+        type="text"
+        placeholder="Enter a city"
+        v-model="city"
+        @keyup.enter="searchWeather"
+      />
       <button class="btn-search" @click="searchWeather">Search</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.container {
-  margin: 20px;
-}
 .search-container {
   height: 20px;
   display: flex;
@@ -41,5 +43,8 @@ const searchWeather = () => {
 }
 .search-weather-icon {
   margin-left: 10px;
+}
+.title {
+  font-size: 50px;
 }
 </style>

@@ -13,7 +13,7 @@ const useWeather = () => {
 
   const getRealTimeWeather = async (city = "santiago") => {
     const response = await fetch(
-      `https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`,
+      `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&days=3`,
       options
     );
 
