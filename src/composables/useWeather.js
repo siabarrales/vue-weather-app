@@ -11,7 +11,7 @@ const useWeather = () => {
     },
   };
 
-  const getRealTimeWeather = async (city = "santiago") => {
+  const getRealTimeWeather = async (city = "sd") => {
     const response = await fetch(
       `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&days=3`,
       options

@@ -5,6 +5,7 @@ import IconLocation from "./icons/IconLocation.vue";
 import IconWind from "./icons/IconWind.vue";
 import IconHumidity from "./icons/IconHumidity.vue";
 import IconUV from "./icons/IconUV.vue";
+import IconNotFound from "./icons/IconNotFound.vue";
 import useWeather from "./../composables/useWeather";
 import ForecastWeather from "./ForecastWeather.vue";
 
@@ -38,7 +39,10 @@ onMounted(async () => {
       <span class="loader"></span>
     </div>
     <div v-else-if="weather === 'cityNotExist'">
-      La ciudad no existe, intente nuevamente.
+      <IconNotFound class="notfound-icon" />
+      <h2>Hmmm!</h2>
+      <p>No encontramos la ciudad que buscabas.</p>
+      <p></p>
     </div>
     <div v-else>
       <p class="city">
@@ -75,11 +79,11 @@ onMounted(async () => {
           {{ weather.current.condition.text }}
         </h3>
       </div>
+      <ForecastWeather
+        v-if="weather && !loading"
+        :forecastday="weather.forecast.forecastday"
+      />
     </div>
-    <ForecastWeather
-      v-if="weather && !loading"
-      :forecastday="weather.forecast.forecastday"
-    />
   </div>
 </template>
 
@@ -138,5 +142,10 @@ img {
 }
 .current-weather-info p {
   margin-left: 5px;
+}
+
+.notfound-icon {
+  font-size: 80px;
+  color: #646cff;
 }
 </style>

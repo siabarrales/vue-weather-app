@@ -42,7 +42,7 @@ const searchWeather = () => {
   align-items: center;
 }
 .search-weather-icon {
-  margin-left: 19px;
+  margin-left: 10px;
 }
 .title {
   font-size: 55px;
